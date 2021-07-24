@@ -1,0 +1,14 @@
+---
+- name: Create Hadoop directory
+  command: mkdir -p /usr/local/hadoop
+
+- name: Create Hadoop dedicated group
+  group:
+    name: hadoop
+    state: present
+
+- name: Create Hadoop dedicated user
+  user:
+    name: hadoopusr
+    group: hadoop
+    shell: /bin/bash
