@@ -11,3 +11,12 @@
 - name: Print Java version
   debug:
     msg: "{{ java_version }}"
+
+- name: Set JAVA HOME environment variable
+  shell: echo JAVA_HOME is $JAVA_HOME
+  environment:
+    JAVA_HOME: /usr/lib/jvm/java-8-openjdk-amd64
+  register: shellout
+
+- debug:
+    var: shellout
