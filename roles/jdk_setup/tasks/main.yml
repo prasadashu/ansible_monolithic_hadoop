@@ -5,22 +5,16 @@
     state: present
 
 - name: Check Java version
-  shell: java -version
+  command: java -version
   register: java_version
 
 - name: Print Java version
   debug:
     msg: "{{ java_version }}"
 
-- name: Set JAVA HOME environment variable
-  command: export JAVA_HOME=/usr/java/jre-1.8.0; export PATH=$PATH:$JAVA_HOME
-
-- name: Print JAVA_HOME environment variable
+- name: Fetch JAVA_HOME environment variable
   command: echo $JAVA_HOME
-  register: java_home_path
+  register: java_home
 
 - debug:
-    var: java_home_path
-
-## TO DO
-# 1. Create JDK version variable 
+    var: java_home
