@@ -1,6 +1,9 @@
 ---
 - name: Create Hadoop directory
-  command: mkdir -p /usr/local/hadoop
+  file:
+    path: /usr/local/hadoop
+    state: directory
+    mode: '0755'
 
 - name: Create Hadoop dedicated group
   group:
@@ -12,3 +15,4 @@
     name: hadoopusr
     group: hadoop
     shell: /bin/bash
+    create_home: yes
