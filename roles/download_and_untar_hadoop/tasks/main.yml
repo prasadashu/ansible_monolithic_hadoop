@@ -10,3 +10,5 @@
     src: /tmp/{{ hadoop_version_tar }}
     dest: /usr/local/hadoop
     remote_src: yes
+    owner: hadoopusr
+    group: hadoop
