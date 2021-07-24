@@ -1,0 +1,12 @@
+---
+- name: Download Hadoop tar file
+  get_url:
+    url: https://archive.apache.org/dist/hadoop/{{ hadoop_version_tar }}
+    dest: /tmp/
+    mode: '0755'
+
+- name: Untar the Hadoop file
+  unarchive:
+    src: /tmp/{{ hadoop_version_tar }}
+    dest: /usr/local/hadoop
+    remote_src: yes
