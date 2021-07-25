@@ -87,3 +87,25 @@
     owner: hadoopusr
     group: hadoop
     recurse: yes
+
+- name: Create Hadoop env variables
+  lineinfile:
+    path: ~/.bashrc
+    line: "export HADOOP_HOME=/usr/local/hadoop/hadoop-2.8.0
+         \nexport PATH=$PATH:$HADOOP_HOME/bin
+         \nexport PATH=$PATH:$HADOOP_HOME/sbin
+         \nexport HADOOP_MAPRED_HOME=$HADOOP_HOME
+         \nexport HADOOP_COMMON_HOME=$HADOOP_HOME
+         \nexport HADOOP_HDFS_HOME=$HADOOP_HOME
+         \nexport YARN_HOME=$HADOOP_HOME
+         \nexport HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native
+         \nexport HADOOP_OPTS='-Djava.library.path=$HADOOP_HOME/lib'"
+  become: yes
+  become_user: hadoopusr
+
+- name: Source bashrc file
+  shell: source ~/.bashrc
+  register: source_bashrc
+  failed_when: source_bashrc.rc != 0
+  become: yes
+  become_user: hadoopusr
