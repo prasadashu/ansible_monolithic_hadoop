@@ -116,3 +116,10 @@
   failed_when: namenode_frmt.rc != 0
   become: yes
   become_user: hadoopusr
+
+- name: Start Hadoop namenode
+  shell: hadoop-daemon.sh start namenode
+  register: strt_namenode
+  failed_when: strt_namenode.rc != 0
+  become: yes
+  become_user: hadoopusr
