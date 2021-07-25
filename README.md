@@ -1,5 +1,5 @@
 # ansible_monolithic_hadoop
-Repository to install Hadoop in monolithic fashion
+Repository to install Hadoop in a monolithic fashion.
 
 ## How to run the playbook?
 - Install Ansible in RedHat based distros.
@@ -12,13 +12,16 @@ Repository to install Hadoop in monolithic fashion
 
 - Run the playbook.
 
-`ansible-playbook deploy_hadoop.yml -i inventory/inventory.txt --extra-vars "{'usr_password': 'hadoopusr_pass'}"`
+`ansible-playbook deploy_hadoop.yml -i inventory/inventory.txt --extra-vars "{'host': 'hadoop_monolithic_server', 'usr_password': 'hadoopusr_pass'}"`
 
 ## Repository details
 
 - The Hadoop user password is to be passed at run time.
+- The Hadoop username is *hadoopusr*. (Will make this dynaminc)
 - Below are the configurations applied to the playbook.
 - These configurations can be modified in the `host_vars/hadoop_monolithic_server` file.
+
+**NOTE:** Do check for dependencies before making any changes to the configurations!
 
 ### 1. Hadoop version
 - The default version of Hadoop set to install is **hadoop-2.8.0**.
@@ -31,4 +34,23 @@ Repository to install Hadoop in monolithic fashion
 ### 3. Password salt
 - Replace the value of the variable `password_salt` with the desired Java version.
 
-**NOTE:** Do check for dependencies before making any changes to the configurations!
+## Working with Hadoop
+### 1. Switch user to *hadoopusr*.
+
+- Switch user to *hadoopusr* if under any other user.
+
+`su hadoopusr`
+
+### 2. Create a sample file to be uploaded to HDFS.
+
+- The sample file may optionally be filled with some details.
+
+`touch sample_file.txt`
+
+### 3.Create a user space under HDFS
+
+`hdfs dfs -mkdir -p /user/hadoopusr`
+
+### 4. Upload the sample file to HDFS
+
+`hdfs dfs -copyFromLocal sample_file.txt /user/hadoopusr`
