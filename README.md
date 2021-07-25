@@ -23,11 +23,11 @@ ansible-playbook deploy_hadoop.yml -i inventory/inventory.txt --extra-vars "{'ho
 ## Repository details
 
 - The Hadoop user password is to be passed at run time.
-- The Hadoop username is *hadoopusr*. (Will make this dynaminc)
+- The Hadoop username is *hadoopusr*. (Will make this dynamic)
 - Below are the configurations applied to the playbook.
 - These configurations can be modified in the `host_vars/hadoop_monolithic_server` file.
 
-**NOTE:** Do check for dependencies before making any changes to the configurations!
+### NOTE: Do check for dependencies before making any changes to the configurations!
 
 ### 1. Hadoop version
 - The default version of Hadoop set to install is **hadoop-2.8.0**.
@@ -38,9 +38,12 @@ ansible-playbook deploy_hadoop.yml -i inventory/inventory.txt --extra-vars "{'ho
 - Replace the value of the variable `java_version` with the desired Java version.
 
 ### 3. Password salt
-- Replace the value of the variable `password_salt` with the desired Java version.
+- Replace the value of the variable `password_salt` with the desired salt value.
 
 ## Working with Hadoop
+
+Once the playbook has executed successfully, the following can be done to test Hadoop file system.
+
 ### 1. Switch user to *hadoopusr*.
 
 - Switch user to *hadoopusr* if under any other user.
