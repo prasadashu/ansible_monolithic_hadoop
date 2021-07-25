@@ -109,3 +109,10 @@
   failed_when: source_bashrc.rc != 0
   become: yes
   become_user: hadoopusr
+
+- name: Format Hadoop namenode
+  shell: hdfs namenode -format
+  register: namenode_frmt
+  failed_when: namenode_frmt.rc != 0
+  become: yes
+  become_user: hadoopusr
