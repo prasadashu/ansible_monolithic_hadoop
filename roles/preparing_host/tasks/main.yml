@@ -21,7 +21,7 @@
 - name: Create JAVA_HOME env variable
   lineinfile:
     path: ~/.bashrc
-    line: export JAVA_HOME=/usr/lib/jvm/jre-1.8.0
+    line: export JAVA_HOME=/usr/lib/jvm/java
   become: yes
   become_user: hadoopusr
 
