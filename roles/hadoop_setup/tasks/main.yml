@@ -130,3 +130,14 @@
   failed_when: strt_datanode.rc != 0
   become: yes
   become_user: hadoopusr
+
+- name: Check Hadoop services running
+  shell: jps
+  register: jps_out
+  failed_when: jps_out.rc != 0
+  become: yes
+  become_user: hadoopusr
+
+- name: Print Hadoop services running
+  debug:
+    msg: "{{ jps_out.stdout }}"
