@@ -7,7 +7,7 @@
 
 - name: Untar the Hadoop file
   unarchive:
-    src: /tmp/{{ hadoop_version }}
+    src: /tmp/{{ hadoop_version }}.tar.gz
     dest: /usr/local/hadoop
     remote_src: yes
     owner: hadoopusr
