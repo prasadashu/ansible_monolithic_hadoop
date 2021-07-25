@@ -6,34 +6,34 @@
     line: "<property>
       \n\t <name>fs.default.name</name>
       \n\t <value>hdfs://localhost:9000</value>
-        \n </property>"
+        \n</property>"
 
 - name: Configure hdfs-site.xml Namenode space
-  lineinefile:
-    path: /usr/local/hadoop/{{ hadoop_version }}/etc/hadoop/core-site.xml
+  lineinfile:
+    path: /usr/local/hadoop/{{ hadoop_version }}/etc/hadoop/hdfs-site.xml
     insertafter: "<configuration>"
     line: "<property>
       \n\t <name>dfs.namenode.name.dir</name>
       \n\t <value>file:/usr/local/hadoop_space/hdfs/namenode</value>
-        \n </property>"
+        \n</property>"
 
 - name: Configure hdfs-site.xml Replication Factor
   lineinfile:
-    path: /usr/local/hadoop/{{ hadoop_version }}/etc/hadoop/core-site.xml
+    path: /usr/local/hadoop/{{ hadoop_version }}/etc/hadoop/hdfs-site.xml
     insertafter: "<configuration>"
     line: "<property>
       \n\t <name>dfs.replication</name>
       \n\t <value>3</value>
-        \n </property>"
+        \n</property>"
 
 - name: Configure hdfs-site.xml Datanode space
   lineinfile:
-    path: /usr/local/hadoop/{{ hadoop_version }}/etc/hadoop/core-site.xml
+    path: /usr/local/hadoop/{{ hadoop_version }}/etc/hadoop/hdfs-site.xml
     insertafter: "<configuration>"
     line: "<property>
       \n\t <name>dfs.datanode.data.dir</name>
       \n\t <value>file:/usr/local/hadoop_space/hdfs/datanode</value>
-        \n </property>"
+        \n</property>"
 
 - name: Configure yarn-site.xml aux-services
   lineinfile:
@@ -42,7 +42,7 @@
     line: "<property>
       \n\t <name>yarn.nodemanager.aux-services</name>
       \n\t <value>mapreduce_shuffle</value>
-        \n </property>"
+        \n</property>"
 
 - name: Configure yarn-site.xml aux-services shuffle class
   lineinfile:
@@ -51,7 +51,7 @@
     line: "<property>
       \n\t <name>yarn.nodemanager.aux-services.mapreduce.shuffle.class</name>
       \n\t <value>org.apache.hadoop.mapred.ShuffleHandler</value>
-        \n </property>"
+        \n</property>"
 
 - name: Copy mapred-site.xml template
   copy:
@@ -66,7 +66,7 @@
     line: "<property>
       \n\t <name>mapreduce.framework.name</name>
       \n\t <value>yarn</value>
-        \n </property>"
+        \n</property>"
 
 - name: Create namenode space directories
   file:
