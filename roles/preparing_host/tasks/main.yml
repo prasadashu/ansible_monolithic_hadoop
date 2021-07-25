@@ -13,6 +13,7 @@
 - name: Create Hadoop dedicated user
   user:
     name: hadoopusr
+    password: "{{ usr_password | password_hash('sha512', password_salt) }}"
     group: hadoop
     shell: /bin/bash
     create_home: yes
