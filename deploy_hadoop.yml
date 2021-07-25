@@ -1,6 +1,5 @@
 - name: Deploy Monolithic Hadoop
   hosts: "{{ host }}"
-  environment: JAVA_HOME=/usr/lib/jvm/jre-1.8.0
   roles:
     - jdk_setup
     - preparing_host
