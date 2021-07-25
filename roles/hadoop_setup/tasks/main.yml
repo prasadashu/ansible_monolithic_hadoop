@@ -57,6 +57,8 @@
   copy:
     src: /usr/local/hadoop/{{ hadoop_version }}/etc/hadoop/mapred-site.xml.template
     dest: /usr/local/hadoop/{{ hadoop_version }}/etc/hadoop/mapred-site.xml
+    owner: hadoopusr
+    group: hadoop
     remote_src: yes
 
 - name: Configure mapred-site.xml MapReduce framework
