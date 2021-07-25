@@ -25,6 +25,8 @@
   become_user: hadoopusr
 
 - name: Source bashrc file
-  command: source ~/.bashrc
+  shell: source ~/.bashrc
   register: source_bashrc
-  changed_when: source_bashrc.rc == 0
+  failed_when: source_bashrc.rc != 0
+  become: yes
+  become_user: hadoopusr
