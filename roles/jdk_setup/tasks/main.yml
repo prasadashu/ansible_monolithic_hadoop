@@ -12,10 +12,3 @@
 - name: Print Java version
   debug:
     msg: "{{ java_version }}"
-
-- name: Create JAVA_HOME env variable
-  lineinfile:
-    path: ~/.bashrc
-    line: JAVA_HOME=/usr/lib/jvm/jre-1.8.0
-  become: yes
-  become_user: hadoopusr
