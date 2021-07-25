@@ -4,3 +4,4 @@
     - jdk_setup
     - preparing_host
     - download_and_untar_hadoop
+    - hadoop_setup
