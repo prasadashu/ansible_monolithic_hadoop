@@ -123,3 +123,10 @@
   failed_when: strt_namenode.rc != 0
   become: yes
   become_user: hadoopusr
+
+- name: Start Hadoop datanode
+  shell: hadoop-daemon.sh start datanode
+  register: strt_datanode
+  failed_when: strt_datanode.rc != 0
+  become: yes
+  become_user: hadoopusr
