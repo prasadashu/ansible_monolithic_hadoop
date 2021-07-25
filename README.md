@@ -4,15 +4,21 @@ Repository to install Hadoop in a monolithic fashion.
 ## How to run the playbook?
 - Install Ansible in RedHat based distros.
 
-`sudo yum install -y ansible`
+```shell
+sudo yum install -y ansible
+```
 
 - Clone this repo.
 
-`git clone https://github.com/prasadashu/ansible_monolithic_hadoop.git`
+```shell
+git clone https://github.com/prasadashu/ansible_monolithic_hadoop.git
+```
 
 - Run the playbook.
 
-`ansible-playbook deploy_hadoop.yml -i inventory/inventory.txt --extra-vars "{'host': 'hadoop_monolithic_server', 'usr_password': 'hadoopusr_pass'}"`
+```shell
+ansible-playbook deploy_hadoop.yml -i inventory/inventory.txt --extra-vars "{'host': 'hadoop_monolithic_server', 'usr_password': 'hadoopusr_pass'}"
+```
 
 ## Repository details
 
@@ -39,18 +45,26 @@ Repository to install Hadoop in a monolithic fashion.
 
 - Switch user to *hadoopusr* if under any other user.
 
-`su hadoopusr`
+```shell
+su hadoopusr
+```
 
 ### 2. Create a sample file to be uploaded to HDFS.
 
 - The sample file may optionally be filled with some details.
 
-`touch sample_file.txt`
+```shell
+touch sample_file.txt
+```
 
 ### 3.Create a user space under HDFS
 
-`hdfs dfs -mkdir -p /user/hadoopusr`
+```shell
+hdfs dfs -mkdir -p /user/hadoopusr
+```
 
 ### 4. Upload the sample file to HDFS
 
-`hdfs dfs -copyFromLocal sample_file.txt /user/hadoopusr`
+```shell
+hdfs dfs -copyFromLocal sample_file.txt /user/hadoopusr
+```
