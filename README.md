@@ -23,7 +23,17 @@ ansible-playbook deploy_hadoop.yml -i inventory/inventory.txt --extra-vars "{'ho
 ## Repository details
 
 - The Hadoop user password is to be passed at run time.
-- The Hadoop username is *hadoopusr*. (Will make this dynamic)
+- The default Hadoop user password is `hadoopusr_pass`.
+- The default Hadoop username is `hadoopusr`.
+- The Hadoop username can be changed in the `host_vars/hadoop_monolithic_server` file.
+- The Hadoop username can also be changed at run time by adding `hadoop_user` variable in the extra vars section.
+
+Sample:-
+
+```shell
+ansible-playbook deploy_hadoop.yml -i inventory/inventory.txt --extra-vars "{'host': 'hadoop_monolithic_server', 'usr_password': 'hadoopusr_pass', 'hadoop_user': 'hadoop_custom_user'}"
+```
+
 - Below are the configurations applied to the playbook.
 - These configurations can be modified in the `host_vars/hadoop_monolithic_server` file.
 
@@ -44,9 +54,9 @@ ansible-playbook deploy_hadoop.yml -i inventory/inventory.txt --extra-vars "{'ho
 
 Once the playbook has been executed successfully, the following can be done to test Hadoop file system.
 
-### 1. Switch user to *hadoopusr*.
+### 1. Switch user to *hadoopusr* or the custom user created.
 
-- Switch user to *hadoopusr* if under any other user.
+- Switch user to *hadoopusr* (Default) if under any other user.
 
 ```shell
 su hadoopusr
