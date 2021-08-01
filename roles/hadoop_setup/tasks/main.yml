@@ -57,7 +57,7 @@
   copy:
     src: /usr/local/hadoop/{{ hadoop_version }}/etc/hadoop/mapred-site.xml.template
     dest: /usr/local/hadoop/{{ hadoop_version }}/etc/hadoop/mapred-site.xml
-    owner: hadoopusr
+    owner: "{{ hadoop_user }}"
     group: hadoop
     remote_src: yes
 
@@ -75,7 +75,7 @@
     path: /usr/local/hadoop_space/hdfs/namenode
     state: directory
     mode: '0755'
-    owner: hadoopusr
+    owner: "{{ hadoop_user }}"
     group: hadoop
     recurse: yes
 
@@ -84,7 +84,7 @@
     path: /usr/local/hadoop_space/hdfs/datanode
     state: directory
     mode: '0755'
-    owner: hadoopusr
+    owner: "{{ hadoop_user }}"
     group: hadoop
     recurse: yes
 
@@ -101,21 +101,21 @@
          \nexport HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native
          \nexport HADOOP_OPTS=\"-Djava.library.path=$HADOOP_HOME/lib\""
   become: yes
-  become_user: hadoopusr
+  become_user: "{{ hadoop_user }}"
 
 - name: Source bashrc file
   shell: source ~/.bashrc
   register: source_bashrc
   failed_when: source_bashrc.rc != 0
   become: yes
-  become_user: hadoopusr
+  become_user: "{{ hadoop_user }}"
 
 - name: Format Hadoop namenode
   shell: $HADOOP_BIN/hdfs namenode -format
   register: namenode_frmt
   failed_when: namenode_frmt.rc != 0
   become: yes
-  become_user: hadoopusr
+  become_user: "{{ hadoop_user }}"
   environment:
     JAVA_HOME: /usr/lib/jvm/java
     HADOOP_BIN: /usr/local/hadoop/{{ hadoop_version }}/bin
@@ -125,7 +125,7 @@
   register: strt_namenode
   failed_when: strt_namenode.rc != 0
   become: yes
-  become_user: hadoopusr
+  become_user: "{{ hadoop_user }}"
   environment:
     JAVA_HOME: /usr/lib/jvm/java
     HADOOP_SBIN: /usr/local/hadoop/{{ hadoop_version }}/sbin
@@ -135,7 +135,7 @@
   register: strt_datanode
   failed_when: strt_datanode.rc != 0
   become: yes
-  become_user: hadoopusr
+  become_user: "{{ hadoop_user }}"
   environment:
     JAVA_HOME: /usr/lib/jvm/java
     HADOOP_SBIN: /usr/local/hadoop/{{ hadoop_version }}/sbin
@@ -145,7 +145,7 @@
   register: jps_out
   failed_when: jps_out.rc != 0
   become: yes
-  become_user: hadoopusr
+  become_user: "{{ hadoop_user }}"
 
 - name: Print Hadoop services running
   debug:

@@ -12,7 +12,7 @@
 
 - name: Create Hadoop dedicated user
   user:
-    name: hadoopusr
+    name: "{{ hadoop_user }}"
     password: "{{ usr_password | password_hash('sha512', password_salt) }}"
     group: hadoop
     shell: /bin/bash
@@ -23,11 +23,11 @@
     path: ~/.bashrc
     line: export JAVA_HOME=/usr/lib/jvm/java
   become: yes
-  become_user: hadoopusr
+  become_user: "{{ hadoop_user }}"
 
 - name: Source bashrc file
   shell: source ~/.bashrc
   register: source_bashrc
   failed_when: source_bashrc.rc != 0
   become: yes
-  become_user: hadoopusr
+  become_user: "{{ hadoop_user }}"
