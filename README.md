@@ -42,7 +42,7 @@ ansible-playbook deploy_hadoop.yml -i inventory/inventory.txt --extra-vars "{'ho
 
 ## Working with Hadoop
 
-Once the playbook has executed successfully, the following can be done to test Hadoop file system.
+Once the playbook has been executed successfully, the following can be done to test Hadoop file system.
 
 ### 1. Switch user to *hadoopusr*.
 
